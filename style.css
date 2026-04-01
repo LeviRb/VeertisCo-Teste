@@ -4,7 +4,11 @@
         --primary: #072579;
         --dark: #0b1320;
         --text: #1e293b;
-        --muted: #64748b;
+        --muted: #003277;
+        --border: #0a3874;
+        --off-black: #fff8f1;
+        --accent: #1755ff;
+        --cond: "Poppins", sans-serif;
       }
 
       /* Scroll suave para a navegação */
@@ -58,15 +62,18 @@
       nav a:hover {
         color: var(--primary);
       }
-
-      /* ========================================= */
+/* ========================================= */
       /* HEADER RESPONSIVO (LOGO + TEXTO LADO A LADO)*/
       /* ========================================= */
       header {
+        position: relative; /* ESSENCIAL: Segura as caixas flutuantes dentro do header */
         padding: 180px 20px 150px 20px;
         text-align: center;
         background: linear-gradient(105deg, #000080, #4169e1, #89cff0, #ffffff);
         overflow: hidden;
+        display: flex;
+        justify-content: center; /* Garante que a logo fique no meio */
+        align-items: center;
       }
 
       .hero-content {
@@ -76,36 +83,51 @@
         gap: 20px;
         transition: transform 0.5s ease-out, opacity 0.5s ease-out;
         will-change: transform, opacity;
+        z-index: 2; /* Mantém a logo acima de tudo */
       }
 
       header img {
-        width: clamp(700px, 8vw, 90px); 
+        width: clamp(200px, 20vw, 350px); /* Ajustei o clamp pois "700px" no mínimo ia quebrar a tela */
         margin-bottom: 0;
       }
 
       /* ========================================= */
-      /* FONTE ARCHIVO BLACK APLICADA AQUI         */
+      /* CAIXAS FLUTUANTES NO HEADER               */
       /* ========================================= */
-      header h1 {
-        font-family: 'Archivo Black', sans-serif; /* Mudei a fonte aqui */
-        text-transform: uppercase; /* Força maiúsculas */
-        font-size: clamp(3rem, 8vw, 10rem); 
+      .caixas-flutuantes {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); /* Centraliza verticalmente as caixas */
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Espaço entre uma caixa e outra */
+        z-index: 1;
+      }
+
+      /* Posiciona um grupo na esquerda e outro na direita */
+      .caixas-flutuantes.esquerda { left: 5%; }
+      .caixas-flutuantes.direita { right: 5%; }
+
+      .caixa-info {
+        background: rgba(255, 255, 255, 0.08); /* Fundo branco quase transparente */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Bordinha brilhante */
+        backdrop-filter: blur(8px); /* Efeito de vidro borrado no fundo */
+        padding: 15px 25px;
+        border-radius: 12px;
         color: white;
-        display: inline-block;
-        line-height: 1;
+        width: 250px;
+        text-align: left;
+        font-size: 0.9rem;
+        font-weight: 300;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
       }
 
-      .fade-out-right {
-        transform: translateX(150px);
-        opacity: 0;
+      /* Um charmezinho: a caixa levanta levemente quando passa o mouse */
+      .caixa-info:hover {
+        transform: translateX(5px); 
+        background: rgba(255, 255, 255, 0.15);
       }
-
-      header p {
-        color: var(--muted);
-        font-size: 1.2rem;
-        margin-top: 15px;
-      }
-
       /* Classes padronizadas */
       main {
         padding-top: 40px; 
@@ -160,8 +182,6 @@
         overflow: hidden;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         transition: 0.3s;
-        
-        /* ADICIONE ESTAS 3 LINHAS AQUI */
         min-height: 150px; /* Aumente ou diminua esse número para ajustar a altura do card todo */
         display: flex;
         flex-direction: column;
@@ -189,26 +209,39 @@
         font-size: 0.9rem;
       }
 
-      .carousel {
-        max-width: 700px;
-        margin: auto;
-        overflow: hidden;
-      }
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 20px;
+}
 
-      .carousel-track {
-        display: flex;
-        transition: 0.5s;
-      }
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 30s linear infinite;
+}
 
-      .carousel-item {
-        min-width: 100%;
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
-        display: flex;
-        gap: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
+.carousel-item {
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* animação automática */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
       .tweet-avatar {
         width: 45px;
@@ -298,3 +331,72 @@
           gap: 10px;
         }
       }
+
+/* ========================================= */
+/* MARQUEE                                  */
+/* ========================================= */
+.marquee-section {
+  width: 100%;
+  padding: 18px 0;
+  overflow: hidden;
+  background: #f8fafc; /* fundo mais clean */
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content; /* ESSENCIAL */
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 0 30px;
+
+  font-size: clamp(10px, 1vw, 13px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.marquee-item::after {
+  content: '•';
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* animação mais suave */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.duas-caixas {
+  display: flex;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* IMPORTANTE */
+}
+
+.duas-caixas .caixa-destaque {
+  flex: 1 1 400px;
+  max-width: 500px;
+  margin: 0; /* REMOVE o margin antigo */
+}
+
+@media (max-width: 768px) {
+  .duas-caixas {
+    flex-direction: column;
+  }
+
+  .duas-caixas .caixa-destaque {
+    width: 100%;
+    max-width: 100%;
+  }
+}
