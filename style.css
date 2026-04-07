@@ -400,3 +400,41 @@
     max-width: 100%;
   }
 }
+.card-cta {
+  margin: 40px auto 0;
+  padding: 40px 20px;
+  max-width: 700px;
+  text-align: center;
+
+  background: linear-gradient(135deg, #072579, #1755ff);
+  color: white;
+
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-cta h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.card-cta p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 12px 25px;
+  background: white;
+  color: #072579;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-cta:hover {
+  transform: scale(1.05);
+}
