@@ -402,7 +402,7 @@
 }
 .card-cta {
   margin: 40px auto 0;
-  padding: 40px 20px;
+  padding: 40px 60px;
   max-width: 700px;
   text-align: center;
 
@@ -428,7 +428,7 @@
   display: inline-block;
   padding: 12px 25px;
   background: white;
-  color: #072579;
+  color: #4a75eb;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
