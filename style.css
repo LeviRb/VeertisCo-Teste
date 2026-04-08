@@ -11,7 +11,6 @@
         --cond: "Poppins", sans-serif;
       }
 
-      /* Scroll suave para a navegação */
       html {
         scroll-behavior: smooth;
       }
@@ -62,7 +61,7 @@
       nav a:hover {
         color: var(--primary);
       }
-/* ========================================= */
+    /* ========================================= */
       /* HEADER RESPONSIVO (LOGO + TEXTO LADO A LADO)*/
       /* ========================================= */
       header {
